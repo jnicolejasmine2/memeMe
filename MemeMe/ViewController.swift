@@ -36,12 +36,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     private let textDelegate = TextFieldDelegate()
     private var activeTextField: UITextField?
 
-    private let memeTextAttributes = [
-        NSStrokeColorAttributeName: UIColor.blackColor(),
-        NSForegroundColorAttributeName: UIColor.whiteColor(),
-        NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)! ,
-        NSStrokeWidthAttributeName: -5
-    ]
 
 
 
@@ -60,26 +54,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Set Text Delegates
-        topTextField.delegate = textDelegate
-        bottomTextField.delegate = textDelegate
-
-
-        //Default text
-        topTextField.text = "TOP"
-        bottomTextField.text = "BOTTOM"
-
-        // Text Formatting - All Caps, Font, Fill, Stroke, Center, Adjust Width, Minimum Size
-        topTextField.autocapitalizationType = .AllCharacters
-        bottomTextField.autocapitalizationType = .AllCharacters
-        topTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        topTextField.textAlignment = .Center
-        bottomTextField.textAlignment = .Center
-        topTextField.adjustsFontSizeToFitWidth = true
-        bottomTextField.adjustsFontSizeToFitWidth = true
-        topTextField.minimumFontSize = 8.0
-        bottomTextField.minimumFontSize = 8.0
+        // Set Text Attributes for each of the text fields
+        setTextAttributes(topTextField)
+        setTextAttributes(bottomTextField)
 
 
         // Share button disabled until a photo is selected
@@ -105,6 +82,39 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // When cancel is chosen, dismiss the view controller to return to original settings
     @IBAction func cancelRefreshViewController(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+
+
+// ***** TEXT MANAGEMENT  **** //
+
+    // Set text attributes 
+    func setTextAttributes(textField: UITextField) {
+
+        // Set Text Delegates
+        textField.delegate = textDelegate
+
+        //Default text
+        if textField === topTextField {
+            textField.text = "TOP"
+        } else {
+            textField.text = "BOTTOM"
+        }
+
+        // Text Formatting - All Caps, Font, Fill, Stroke, Center, Adjust Width, Minimum Size
+
+        let memeTextAttributes = [
+            NSStrokeColorAttributeName: UIColor.blackColor(),
+            NSForegroundColorAttributeName: UIColor.whiteColor(),
+            NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)! ,
+            NSStrokeWidthAttributeName: -5
+        ]
+
+        textField.autocapitalizationType = .AllCharacters
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .Center
+        textField.adjustsFontSizeToFitWidth = true
+        textField.minimumFontSize = 8.0
+
     }
 
 
@@ -180,7 +190,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
         // If share was successful, save off Meme for Phase II
         activityViewController?.completionWithItemsHandler = {(activity, success, items,  error) in
-            var savedMeme = Meme(topMemeText: self.topTextField.text, bottomMemeText: self.bottomTextField.text, originalImage: self.imagePickView!.image, memedImage: memedImage)
+            if success == true {
+                var savedMeme = Meme(topMemeText: self.topTextField.text, bottomMemeText: self.bottomTextField.text, originalImage: self.imagePickView!.image, memedImage: memedImage)
+            }
         }
 
     }
@@ -241,10 +253,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
 
-    // If keyboard was for the bottom text field, move view back down
+    // Reset View back down
     func keyboardWillHide(notification: NSNotification) {
         if activeTextField === bottomTextField {
-            view.frame.origin.y += getKeyboardHeight(notification)
+            view.frame.origin.y = 0
         }
     }
 

@@ -15,18 +15,7 @@ struct Meme {
     var bottomMemeText: String?
     var originalImage: UIImage?
     var memedImage: UIImage?
-
-
-    // Set the URL and name where the recorded audio is stored
-    init(topMemeText: String!, bottomMemeText: String!, originalImage: UIImage!, memedImage: UIImage) {
-        self.topMemeText = topMemeText
-        self.bottomMemeText = bottomMemeText
-        self.memedImage = memedImage
-        if originalImage != nil {
-            self.originalImage = originalImage!
-        }
-    }
-
+ 
 
 }
 
