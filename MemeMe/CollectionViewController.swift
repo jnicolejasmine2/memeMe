@@ -29,20 +29,19 @@ class collectionViewController: UICollectionViewController, UINavigationControll
         // Would not show navigation button without turning off/on
         navigationController?.navigationBarHidden = true
         navigationController?.navigationBarHidden = false
-    }
 
-
-    // Reload data when returned from other views
-    override func viewDidAppear(animated: Bool) {
+        // Reload data when returned from other views
         memedCollectionView.reloadData()
+
     }
+
 
 
 // ***** COLLECTION MANAGEMENT  **** //
 
     // Number of Items
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.memes.count
+        return memes.count
     }
 
 

@@ -1,5 +1,5 @@
 //
-//  mainViewController.swift
+//  memedTableViewController.swift
 //  MemeMe
 //
 //  Created by Jeanne Nicole Byers on 8/24/15.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class mainViewController: UIViewController, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource  {
+class memedTableViewController: UIViewController, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource  {
 
     // Top Toolbar Items (Add)
     @IBOutlet weak var addMemeButton: UIBarButtonItem!
@@ -25,18 +25,6 @@ class mainViewController: UIViewController, UINavigationControllerDelegate, UITa
 // ***** VIEW CONTROLLER MANAGEMENT  **** //
 
      override func viewWillAppear(animated: Bool) {
-        
-        // Check if any samed memes, if not present Edit View controller
-        if self.memes.count == 0 {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
-            let secondViewController = self.storyboard!.instantiateViewControllerWithIdentifier("EditViewController") as! UIViewController
-
-            // Turn off Tab Bar
-            secondViewController.hidesBottomBarWhenPushed = true
-           
-            self.navigationController!.pushViewController(secondViewController, animated: false)
-        }
 
         // Show tab Bar
         hidesBottomBarWhenPushed = false
@@ -45,24 +33,25 @@ class mainViewController: UIViewController, UINavigationControllerDelegate, UITa
         navigationController?.navigationBarHidden = true
         navigationController?.navigationBarHidden = false
 
-    }
+        // Set Option to show edit button on the table line
+        memedTableView.setEditing(true, animated: true)
 
-
-    // Reload data when returned from other views
-    override func viewDidAppear(animated: Bool) {
+        // Refesh the table when one is added or deleted
         memedTableView.reloadData()
 
     }
+
+
 
 // ***** TABLE MANAGEMENT  **** //
 
     // Number of Rows
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.memes.count
+        return memes.count
 
     }
 
-    
+
  // Load the images and text into the table
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 

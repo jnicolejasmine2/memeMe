@@ -58,7 +58,6 @@ class memedViewController: UIViewController, UIImagePickerControllerDelegate, UI
     // Saved Memes, return to table/collection
     @IBAction func cancelRefreshViewController(sender: AnyObject) {
         navigationController?.popToRootViewControllerAnimated(true)
-
      }
 
 

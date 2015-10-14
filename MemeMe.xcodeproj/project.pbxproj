@@ -18,7 +18,7 @@
 		829768C81BC0C5130072FB9B /* memedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829768C71BC0C5130072FB9B /* memedViewController.swift */; };
 		82F893511B7E907500231948 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F893501B7E907500231948 /* TextFieldDelegate.swift */; };
 		82F893531B891CEE00231948 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F893521B891CEE00231948 /* Meme.swift */; };
-		82F893551B8BD1C700231948 /* mainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F893541B8BD1C700231948 /* mainViewController.swift */; };
+		82F893551B8BD1C700231948 /* memedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F893541B8BD1C700231948 /* memedTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +47,7 @@
 		829768C71BC0C5130072FB9B /* memedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = memedViewController.swift; sourceTree = "<group>"; };
 		82F893501B7E907500231948 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 		82F893521B891CEE00231948 /* Meme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Meme.swift; path = ../Meme.swift; sourceTree = "<group>"; };
-		82F893541B8BD1C700231948 /* mainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mainViewController.swift; sourceTree = "<group>"; };
+		82F893541B8BD1C700231948 /* memedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = memedTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +94,7 @@
 				8282E3091B76ADDE00788447 /* AppDelegate.swift */,
 				8282E30B1B76ADDE00788447 /* ViewController.swift */,
 				829768C71BC0C5130072FB9B /* memedViewController.swift */,
-				82F893541B8BD1C700231948 /* mainViewController.swift */,
+				82F893541B8BD1C700231948 /* memedTableViewController.swift */,
 				8282E30D1B76ADDE00788447 /* Main.storyboard */,
 				829768C51BB610300072FB9B /* memedCollectionCell.swift */,
 				82F893501B7E907500231948 /* TextFieldDelegate.swift */,
@@ -233,7 +233,7 @@
 				821956D81BB4CC1400A84A70 /* CollectionViewController.swift in Sources */,
 				8282E30C1B76ADDE00788447 /* ViewController.swift in Sources */,
 				82F893531B891CEE00231948 /* Meme.swift in Sources */,
-				82F893551B8BD1C700231948 /* mainViewController.swift in Sources */,
+				82F893551B8BD1C700231948 /* memedTableViewController.swift in Sources */,
 				8282E30A1B76ADDE00788447 /* AppDelegate.swift in Sources */,
 				829768C81BC0C5130072FB9B /* memedViewController.swift in Sources */,
 				82F893511B7E907500231948 /* TextFieldDelegate.swift in Sources */,
