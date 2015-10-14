@@ -36,8 +36,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     private let textDelegate = TextFieldDelegate()
     private var activeTextField: UITextField?
 
+    //Passed Fields      
+    var selectedMeme: Meme?
 
 
+
+// ***** VIEW CONTROLLER MANAGEMENT  **** //
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -54,6 +58,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Hide navigation button from tab bar and view
+        navigationController?.navigationBarHidden = true
+
         // Set Text Attributes for each of the text fields
         setTextAttributes(topTextField)
         setTextAttributes(bottomTextField)
@@ -61,8 +68,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
         // Share button disabled until a photo is selected
         shareButton.enabled = false
-    }
 
+
+        if let textCheck = selectedMeme?.topMemeText {
+            topTextField.text = selectedMeme?.topMemeText
+
+        }
+
+        if let textCheck = selectedMeme?.bottomMemeText {
+            bottomTextField.text = selectedMeme?.bottomMemeText
+
+        }
+
+        if let imageCheck = selectedMeme?.originalImage {
+            imagePickView.image = selectedMeme?.originalImage
+            
+            // Image selected, enable share and cancel button
+            shareButton.enabled = true
+        }
+    }
 
 
     override func viewWillDisappear(animated: Bool) {
@@ -73,15 +97,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
 
-    // Hide status bar
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
-
-
-    // When cancel is chosen, dismiss the view controller to return to original settings
+    // When cancel is chosen, dismiss the view controller to return to original view
     @IBAction func cancelRefreshViewController(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+        navigationController?.popToRootViewControllerAnimated(false)
+
     }
 
 
@@ -101,7 +120,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
 
         // Text Formatting - All Caps, Font, Fill, Stroke, Center, Adjust Width, Minimum Size
-
         let memeTextAttributes = [
             NSStrokeColorAttributeName: UIColor.blackColor(),
             NSForegroundColorAttributeName: UIColor.whiteColor(),
@@ -114,7 +132,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         textField.textAlignment = .Center
         textField.adjustsFontSizeToFitWidth = true
         textField.minimumFontSize = 8.0
-
     }
 
 
@@ -123,12 +140,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // Select an image from the photo album
     @IBAction func pickAnImage(sender: AnyObject) {
         pickAnImageControl(.PhotoLibrary)
+
     }
 
 
     // Camara Take a photo with the Camera
     @IBAction func pickAnImageFromCamera(sender: AnyObject) {
         pickAnImageControl(.Camera)
+
     }
 
 
@@ -191,9 +210,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // If share was successful, save off Meme for Phase II
         activityViewController?.completionWithItemsHandler = {(activity, success, items,  error) in
             if success == true {
-                var savedMeme = Meme(topMemeText: self.topTextField.text, bottomMemeText: self.bottomTextField.text, originalImage: self.imagePickView!.image, memedImage: memedImage)
+                let savedMeme = Meme(topMemeText: self.topTextField.text, bottomMemeText: self.bottomTextField.text, originalImage: self.imagePickView!.image, memedImage: memedImage)
+
+                let object = UIApplication.sharedApplication().delegate
+                let appDelegate = object as! AppDelegate
+                appDelegate.memes.append(savedMeme) 
+
+               self.navigationController?.popToRootViewControllerAnimated(false)
             }
+
         }
+
 
     }
 
@@ -204,10 +231,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         topToolBar.hidden = true
         bottomToolBar.hidden = true
 
+        var frameSizeAdjusted = view.frame.size
+        UIGraphicsBeginImageContext(frameSizeAdjusted)
 
-        UIGraphicsBeginImageContext(view.frame.size)
-        view.drawViewHierarchyInRect(view.frame, afterScreenUpdates: true)
+        view.drawViewHierarchyInRect(CGRectMake(0, -20, frameSizeAdjusted.width, frameSizeAdjusted.height), afterScreenUpdates: true)
+        
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+
         UIGraphicsEndImageContext()
 
         topToolBar.hidden = false
@@ -269,19 +299,5 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
 
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
