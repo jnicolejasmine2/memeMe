@@ -35,7 +35,7 @@ class collectionViewController: UICollectionViewController, UINavigationControll
 
     }
 
-
+ 
 
 // ***** COLLECTION MANAGEMENT  **** //
 
@@ -62,9 +62,9 @@ class collectionViewController: UICollectionViewController, UINavigationControll
     // When a meme is selected, push the MemedView controller.  Pass the Meme (used to present details) and the indexPath.Row (used for delete)
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
 
-        let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeViewController") as! memedViewController
+        let detailController = storyboard!.instantiateViewControllerWithIdentifier("MemeViewController") as! memedViewController
 
-        let selectedMeme = self.memes[indexPath.item]
+        let selectedMeme = memes[indexPath.item]
         detailController.selectedMeme = selectedMeme
 
         detailController.selectedMemeIndex = indexPath.row
@@ -81,7 +81,7 @@ class collectionViewController: UICollectionViewController, UINavigationControll
     // When Add button selected push the EditView Controller
     @IBAction func addMemeNavigation(sender: AnyObject) {
 
-        let secondViewController = self.storyboard!.instantiateViewControllerWithIdentifier("EditViewController") as! UIViewController
+        let secondViewController = storyboard!.instantiateViewControllerWithIdentifier("EditViewController") as! UIViewController
 
         // Hide tab bar
         secondViewController.hidesBottomBarWhenPushed = true

@@ -436,7 +436,7 @@
                                 <items>
                                     <barButtonItem style="plain" id="bST-cM-IxN">
                                         <view key="customView" contentMode="scaleToFill" id="Xje-gU-FOa">
-                                            <rect key="frame" x="0.0" y="0.0" width="294" height="52"/>
+                                            <rect key="frame" x="16" y="9" width="100" height="52"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BsS-yP-VsS">
@@ -467,7 +467,7 @@
                                             <action selector="editMeme:" destination="dhX-oJ-of2" id="2r3-XI-esW"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="WFA-KO-8dp"/>
+                                    <barButtonItem width="35" style="plain" systemItem="fixedSpace" id="WFA-KO-8dp"/>
                                     <barButtonItem image="DeleteIcon" id="EVz-36-V9v">
                                         <connections>
                                             <action selector="deleteMeme:" destination="dhX-oJ-of2" id="iSz-Dw-WhB"/>

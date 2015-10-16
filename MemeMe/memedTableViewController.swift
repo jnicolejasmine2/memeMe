@@ -33,9 +33,6 @@ class memedTableViewController: UIViewController, UINavigationControllerDelegate
         navigationController?.navigationBarHidden = true
         navigationController?.navigationBarHidden = false
 
-        // Set Option to show edit button on the table line
-        memedTableView.setEditing(true, animated: true)
-
         // Refesh the table when one is added or deleted
         memedTableView.reloadData()
 
@@ -81,10 +78,10 @@ class memedTableViewController: UIViewController, UINavigationControllerDelegate
     // When a meme is selected, push the MemedView controller.  Pass the Meme (used to present details) and the indexPath.Row (used for delete)
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-        let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeViewController") as! memedViewController
+        let detailController = storyboard!.instantiateViewControllerWithIdentifier("MemeViewController") as! memedViewController
 
         // Pass Meme and Index Number
-        let selectedMeme = self.memes[indexPath.row]
+        let selectedMeme = memes[indexPath.row]
         detailController.selectedMeme = selectedMeme
         detailController.selectedMemeIndex = indexPath.row
 
@@ -113,7 +110,7 @@ class memedTableViewController: UIViewController, UINavigationControllerDelegate
     // When Add button selected push the EditView Controller
     @IBAction func addMemeNavigation(sender: AnyObject) {
 
-        let secondViewController = self.storyboard!.instantiateViewControllerWithIdentifier("EditViewController") as! UIViewController
+        let secondViewController = storyboard!.instantiateViewControllerWithIdentifier("EditViewController") as! UIViewController
 
         secondViewController.hidesBottomBarWhenPushed = true
 

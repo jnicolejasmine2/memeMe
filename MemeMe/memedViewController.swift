@@ -64,7 +64,9 @@ class memedViewController: UIViewController, UIImagePickerControllerDelegate, UI
     // Edit Button, pass meme to Editor
     @IBAction func editMeme(sender: AnyObject) {
 
-        let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("EditViewController") as! ViewController
+        println("IgotHere to Edit")
+
+        let detailController = storyboard!.instantiateViewControllerWithIdentifier("EditViewController") as! ViewController
 
         detailController.selectedMeme = selectedMeme
 
