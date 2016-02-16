@@ -52,13 +52,12 @@ class memedTableViewController: UIViewController, UINavigationControllerDelegate
  // Load the images and text into the table
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCellWithIdentifier("MemeTableCell") as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("MemeTableCell", forIndexPath: indexPath)
 
         let meme = memes[indexPath.row]
 
         // Set Image and Size it
-        cell.imageView?.image = meme.memedImage
-        let sizeValue = CGSizeMake(50.0, 50.0)
+        cell.imageView?.image = meme.memedImage 
         cell.imageView?.contentMode = .ScaleAspectFit
 
 
@@ -110,7 +109,7 @@ class memedTableViewController: UIViewController, UINavigationControllerDelegate
     // When Add button selected push the EditView Controller
     @IBAction func addMemeNavigation(sender: AnyObject) {
 
-        let secondViewController = storyboard!.instantiateViewControllerWithIdentifier("EditViewController") as! UIViewController
+        let secondViewController = storyboard!.instantiateViewControllerWithIdentifier("EditViewController") 
 
         secondViewController.hidesBottomBarWhenPushed = true
 

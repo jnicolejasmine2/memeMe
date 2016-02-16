@@ -46,7 +46,7 @@ class memedViewController: UIViewController, UIImagePickerControllerDelegate, UI
         setTextAttributes(bottomTextField, selectedText: selectedMeme?.bottomMemeText)
 
         // Set the Image
-        if let imageCheck = selectedMeme?.originalImage {
+        if let _ = selectedMeme?.originalImage {
             imagePickView.image = selectedMeme?.originalImage
         }
     }
@@ -103,7 +103,7 @@ class memedViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
                  NSStrokeWidthAttributeName: -5
             ]
-            var textFormatted = NSMutableAttributedString(string: textCheck, attributes: memeTextAttributes)
+            let textFormatted = NSMutableAttributedString(string: textCheck, attributes: memeTextAttributes)
 
             textField.attributedText = textFormatted
         }

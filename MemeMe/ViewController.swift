@@ -70,17 +70,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         shareButton.enabled = false
 
 
-        if let textCheck = selectedMeme?.topMemeText {
+        if let _ = selectedMeme?.topMemeText {
             topTextField.text = selectedMeme?.topMemeText
 
         }
 
-        if let textCheck = selectedMeme?.bottomMemeText {
+        if let _ = selectedMeme?.bottomMemeText {
             bottomTextField.text = selectedMeme?.bottomMemeText
 
         }
 
-        if let imageCheck = selectedMeme?.originalImage {
+        if let _  = selectedMeme?.originalImage {
             imagePickView.image = selectedMeme?.originalImage
             
             // Image selected, enable share and cancel button
@@ -162,7 +162,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
 
     // Show photo that was selected from Album or picture that was taken
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject: AnyObject])  {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: AnyObject])  {
 
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
 
@@ -177,7 +177,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
 
     // Image was not selected or taken
-    func imagePickerControllerDidCancel(UIImagePickerController){
+    func imagePickerControllerDidCancel(_: UIImagePickerController){
         dismissViewControllerAnimated(true, completion: nil)
     }
 
@@ -231,7 +231,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         topToolBar.hidden = true
         bottomToolBar.hidden = true
 
-        var frameSizeAdjusted = view.frame.size
+        let frameSizeAdjusted = view.frame.size
         UIGraphicsBeginImageContext(frameSizeAdjusted)
 
         view.drawViewHierarchyInRect(CGRectMake(0, -20, frameSizeAdjusted.width, frameSizeAdjusted.height), afterScreenUpdates: true)
@@ -276,7 +276,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     // If keyboard is for bottom text field, then move the view out of the way
     func keyboardWillShow(notification: NSNotification) {
-        let keyBoardHeight = getKeyboardHeight(notification)
+        let _ = getKeyboardHeight(notification)
         if activeTextField === bottomTextField {
            view.frame.origin.y -= getKeyboardHeight(notification)
         }

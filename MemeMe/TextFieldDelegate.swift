@@ -27,7 +27,7 @@ class TextFieldDelegate: NSObject, UITextFieldDelegate {
 
     // Convert both textfields UpperCase
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        textField.text = (textField.text as NSString).stringByReplacingCharactersInRange(range, withString: string.uppercaseString)
+        textField.text = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string.uppercaseString)
         return false
     }
 

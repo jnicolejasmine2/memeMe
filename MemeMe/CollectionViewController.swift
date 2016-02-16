@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class collectionViewController: UICollectionViewController, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource  {
+class  collectionViewController: UICollectionViewController, UINavigationControllerDelegate     {
 
 
     @IBOutlet weak var addMemeButton: UIBarButtonItem!
@@ -81,7 +81,7 @@ class collectionViewController: UICollectionViewController, UINavigationControll
     // When Add button selected push the EditView Controller
     @IBAction func addMemeNavigation(sender: AnyObject) {
 
-        let secondViewController = storyboard!.instantiateViewControllerWithIdentifier("EditViewController") as! UIViewController
+        let secondViewController = storyboard!.instantiateViewControllerWithIdentifier("EditViewController") 
 
         // Hide tab bar
         secondViewController.hidesBottomBarWhenPushed = true
